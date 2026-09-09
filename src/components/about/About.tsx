@@ -129,10 +129,10 @@ export const About: React.FC = () => {
             ))}
           </div>
 
-          <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/[0.06] flex items-center justify-between flex-wrap gap-4">
+          <div className="p-5 sm:p-6 rounded-2xl bg-white/[0.02] border border-white/[0.06] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
               <p className="text-xs uppercase tracking-wider text-zinc-500 font-medium">Current Focus</p>
-              <p className="text-sm font-semibold text-zinc-200 mt-1">Flutter App Development, Firebase &amp; Cloud Firestore</p>
+              <p className="text-sm font-semibold text-zinc-200 mt-1 break-words">Flutter App Development, Firebase &amp; Cloud Firestore</p>
             </div>
             <div className="flex items-center gap-2 flex-wrap">
               {currentFocusTags.map((tag) => {
@@ -161,7 +161,7 @@ export const About: React.FC = () => {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.15 }}
-        className="flex flex-wrap justify-center gap-4"
+        className="flex flex-wrap justify-center gap-3.5 sm:gap-4"
       >
         {verifiedStats.map((stat, idx) => {
           const Icon = stat.icon;
@@ -173,7 +173,7 @@ export const About: React.FC = () => {
               transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
               className="w-full sm:w-[calc(50%-0.5rem)] lg:w-[calc(33.333%-0.75rem)] flex"
             >
-              <Card className="p-5 flex flex-col justify-between w-full h-full bg-zinc-900/50 hover:bg-zinc-900/80 border border-white/[0.08] hover:border-white/[0.16] transition-all shadow-sm hover:shadow-xl group relative overflow-hidden">
+              <Card className="p-4 sm:p-5 flex flex-col justify-between w-full h-full min-h-[135px] bg-zinc-900/50 hover:bg-zinc-900/80 border border-white/[0.08] hover:border-white/[0.16] transition-all shadow-sm hover:shadow-xl group relative overflow-hidden">
                 {/* Soft accent glow on hover */}
                 <div
                   className={`absolute -top-10 -right-10 w-24 h-24 rounded-full blur-2xl opacity-0 group-hover:opacity-15 transition-opacity duration-500 pointer-events-none ${stat.bgGlow}`}
@@ -188,7 +188,7 @@ export const About: React.FC = () => {
                   </div>
                 </div>
                 <div className="relative z-10">
-                  <div className="text-2xl font-bold text-white tracking-tight">{stat.value}</div>
+                  <div className="text-xl sm:text-2xl font-bold text-white tracking-tight">{stat.value}</div>
                   <div className="text-xs text-zinc-500 mt-1">{stat.subtext}</div>
                 </div>
               </Card>

@@ -40,7 +40,7 @@ export const Projects: React.FC = () => {
       />
 
       {/* Filter Tabs */}
-      <div className="flex flex-wrap justify-center gap-2 mb-12">
+      <div className="flex flex-wrap justify-center gap-1.5 sm:gap-2 mb-8 sm:mb-12">
         {filters.map((filterName) => {
           const isSelected = activeFilter === filterName;
           return (
@@ -48,7 +48,7 @@ export const Projects: React.FC = () => {
               key={filterName}
               onClick={() => setActiveFilter(filterName)}
               className={cn(
-                "relative px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-200 cursor-pointer select-none",
+                "relative px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-200 cursor-pointer select-none whitespace-nowrap min-h-[36px]",
                 isSelected
                   ? "text-zinc-950 font-semibold shadow-brand-glow"
                   : "text-zinc-400 hover:text-zinc-200 bg-white/[0.03] hover:bg-white/[0.07] border border-white/[0.08]"
@@ -68,7 +68,7 @@ export const Projects: React.FC = () => {
       </div>
 
       {/* Projects Grid Container - Normal Document Flow, Full Width, Explicit Top Margin */}
-      <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+      <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 lg:gap-8">
         <AnimatePresence mode="popLayout">
           {filteredProjects.length > 0 ? (
             filteredProjects.map((project, index) => (
@@ -85,7 +85,7 @@ export const Projects: React.FC = () => {
                 }}
                 whileHover={{ y: -5 }}
                 onClick={() => setSelectedProject(project)}
-                className="group rounded-3xl bg-zinc-900/60 border border-white/[0.08] hover:border-brand-500/40 p-6 sm:p-7 flex flex-col justify-between cursor-pointer backdrop-blur-md transition-all duration-300 relative overflow-hidden shadow-sm hover:shadow-xl"
+                className="group rounded-2xl sm:rounded-3xl bg-zinc-900/60 border border-white/[0.08] hover:border-brand-500/40 p-5 sm:p-7 flex flex-col justify-between cursor-pointer backdrop-blur-md transition-all duration-300 relative overflow-hidden shadow-sm hover:shadow-xl"
               >
                 {/* Corner hover glow */}
                 <div className="absolute top-0 right-0 w-36 h-36 bg-brand-500/5 group-hover:bg-brand-500/15 rounded-full blur-3xl pointer-events-none transition-all duration-300" />
@@ -111,7 +111,7 @@ export const Projects: React.FC = () => {
 
                   <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight group-hover:text-brand-400 transition-colors flex items-center justify-between">
                     <span>{project.title}</span>
-                    <ArrowUpRight className="w-5 h-5 text-zinc-500 group-hover:text-brand-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                    <ArrowUpRight className="w-5 h-5 text-zinc-500 group-hover:text-brand-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all shrink-0 ml-2" />
                   </h3>
 
                   <p className="text-xs sm:text-sm text-zinc-400 mt-2.5 leading-relaxed line-clamp-2">
@@ -121,7 +121,7 @@ export const Projects: React.FC = () => {
 
                 {/* Bottom Meta, Tech Stack & Quick Action Buttons */}
                 <div className="mt-6 pt-4 border-t border-white/[0.06] flex items-center justify-between gap-3">
-                  <div className="flex flex-wrap gap-1.5 max-w-[65%] sm:max-w-[70%]">
+                  <div className="flex flex-wrap gap-1.5 flex-1 min-w-0">
                     {project.technologies.slice(0, 3).map((tech) => (
                       <span
                         key={tech}

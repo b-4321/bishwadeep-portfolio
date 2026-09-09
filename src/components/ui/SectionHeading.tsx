@@ -20,7 +20,7 @@ export const SectionHeading: React.FC<SectionHeadingProps> = ({
 }) => {
   return (
     <div
-      className={`mb-12 md:mb-16 ${centered ? "text-center max-w-2xl mx-auto" : "max-w-2xl"}`}
+      className={`mb-8 sm:mb-12 md:mb-16 px-1 ${centered ? "text-center max-w-2xl mx-auto" : "max-w-2xl"}`}
     >
       {/* 1. Badge enters first (0ms delay) */}
       <motion.div
@@ -28,7 +28,7 @@ export const SectionHeading: React.FC<SectionHeadingProps> = ({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}
         transition={{ duration: 0.45, ease: EASING_PREMIUM }}
-        className="mb-3"
+        className="mb-2.5 sm:mb-3"
       >
         <Badge variant="brand">{badge}</Badge>
       </motion.div>
@@ -39,7 +39,7 @@ export const SectionHeading: React.FC<SectionHeadingProps> = ({
         whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
         viewport={{ once: true, amount: 0.2 }}
         transition={{ duration: 0.55, delay: 0.1, ease: EASING_PREMIUM }}
-        className="text-3xl md:text-4xl font-bold tracking-tight text-zinc-100"
+        className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-zinc-100 break-words leading-snug sm:leading-tight"
       >
         {title}
       </motion.h2>
@@ -51,7 +51,7 @@ export const SectionHeading: React.FC<SectionHeadingProps> = ({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.55, delay: 0.2, ease: EASING_PREMIUM }}
-          className="mt-3 text-sm md:text-base text-zinc-400 leading-relaxed"
+          className="mt-2.5 sm:mt-3 text-xs sm:text-sm md:text-base text-zinc-400 leading-relaxed"
         >
           {subtitle}
         </motion.p>

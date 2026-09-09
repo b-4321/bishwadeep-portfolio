@@ -59,26 +59,26 @@ export const Contact: React.FC = () => {
           viewport={{ once: true, amount: 0.15 }}
           className="lg:col-span-5 space-y-4"
         >
-          <div className="p-8 rounded-3xl bg-zinc-900/60 border border-white/[0.08] backdrop-blur-md">
-            <h3 className="text-xl font-bold text-white tracking-tight mb-2">
+          <div className="p-5 sm:p-7 md:p-8 rounded-2xl sm:rounded-3xl bg-zinc-900/60 border border-white/[0.08] backdrop-blur-md">
+            <h3 className="text-lg sm:text-xl font-bold text-white tracking-tight mb-2">
               Direct Contact
             </h3>
-            <p className="text-sm text-zinc-400 mb-6 leading-relaxed">
+            <p className="text-xs sm:text-sm text-zinc-400 mb-6 leading-relaxed">
               I am open to full-time engineering roles, high-impact freelance projects, and technical collaborations.
             </p>
 
             <div className="space-y-4">
               {/* Email Card with Copy Button */}
               <div className="flex items-center justify-between p-3.5 rounded-2xl bg-white/[0.03] border border-white/[0.06]">
-                <div className="flex items-center gap-3 overflow-hidden">
+                <div className="flex items-center gap-3 overflow-hidden min-w-0 flex-1">
                   <div className="p-2.5 rounded-xl bg-brand-500/10 text-brand-400 shrink-0">
                     <Mail className="w-4 h-4" />
                   </div>
-                  <div className="truncate">
+                  <div className="truncate min-w-0">
                     <span className="text-[11px] text-zinc-400 font-mono block">Email</span>
                     <a
                       href={`mailto:${personal.email}`}
-                      className="text-sm font-medium text-zinc-200 hover:text-brand-400 transition-colors truncate block"
+                      className="text-xs sm:text-sm font-medium text-zinc-200 hover:text-brand-400 transition-colors truncate block"
                     >
                       {personal.email}
                     </a>
@@ -164,11 +164,11 @@ export const Contact: React.FC = () => {
           viewport={{ once: true, amount: 0.15 }}
           className="lg:col-span-7"
         >
-          <div className="p-8 rounded-3xl bg-zinc-900/60 border border-white/[0.08] backdrop-blur-md">
-            <h3 className="text-xl font-bold text-white tracking-tight mb-2">
+          <div className="p-5 sm:p-7 md:p-8 rounded-2xl sm:rounded-3xl bg-zinc-900/60 border border-white/[0.08] backdrop-blur-md">
+            <h3 className="text-lg sm:text-xl font-bold text-white tracking-tight mb-2">
               Send a Direct Message
             </h3>
-            <p className="text-sm text-zinc-400 mb-6">
+            <p className="text-xs sm:text-sm text-zinc-400 mb-6">
               Complete the form below to open your preferred mail client with your inquiry pre-structured.
             </p>
 
@@ -185,7 +185,7 @@ export const Contact: React.FC = () => {
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     placeholder="Jane Smith"
-                    className="w-full px-4 py-2.5 rounded-xl bg-zinc-950/80 border border-white/[0.1] text-sm text-zinc-100 placeholder-zinc-500 focus:outline-none focus:border-brand-500 transition-colors"
+                    className="w-full px-4 py-2.5 min-h-[44px] rounded-xl bg-zinc-950/80 border border-white/[0.1] text-sm text-zinc-100 placeholder-zinc-500 focus:outline-none focus:border-brand-500 transition-colors"
                   />
                 </div>
 
@@ -200,7 +200,7 @@ export const Contact: React.FC = () => {
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     placeholder="jane@example.com"
-                    className="w-full px-4 py-2.5 rounded-xl bg-zinc-950/80 border border-white/[0.1] text-sm text-zinc-100 placeholder-zinc-500 focus:outline-none focus:border-brand-500 transition-colors"
+                    className="w-full px-4 py-2.5 min-h-[44px] rounded-xl bg-zinc-950/80 border border-white/[0.1] text-sm text-zinc-100 placeholder-zinc-500 focus:outline-none focus:border-brand-500 transition-colors"
                   />
                 </div>
               </div>
@@ -226,7 +226,7 @@ export const Contact: React.FC = () => {
                 </div>
               )}
 
-              <Button type="submit" size="lg" className="w-full sm:w-auto">
+              <Button type="submit" size="lg" className="w-full sm:w-auto min-h-[44px]">
                 <Send className="w-4 h-4" />
                 <span>Send Message</span>
               </Button>

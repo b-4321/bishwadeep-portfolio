@@ -32,18 +32,18 @@ export const Education: React.FC = () => {
             variants={fadeIn}
             whileHover={{ y: -4 }}
             transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-            className="p-6 sm:p-8 rounded-3xl bg-zinc-900/60 border border-white/[0.08] hover:border-brand-500/30 hover:bg-zinc-900/80 transition-all backdrop-blur-md shadow-sm hover:shadow-xl"
+            className="p-5 sm:p-7 md:p-8 rounded-2xl sm:rounded-3xl bg-zinc-900/60 border border-white/[0.08] hover:border-brand-500/30 hover:bg-zinc-900/80 transition-all backdrop-blur-md shadow-sm hover:shadow-xl"
           >
             <div className="flex flex-wrap items-start justify-between gap-3 mb-4">
-              <div className="flex items-start gap-3.5">
-                <div className="p-3 rounded-2xl bg-brand-500/10 border border-brand-500/20 text-brand-400 mt-1">
+              <div className="flex items-start gap-3">
+                <div className="p-2.5 sm:p-3 rounded-2xl bg-brand-500/10 border border-brand-500/20 text-brand-400 mt-1 shrink-0">
                   <GraduationCap className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="text-lg sm:text-xl font-bold text-white tracking-tight">
+                  <h3 className="text-base sm:text-lg md:text-xl font-bold text-white tracking-tight">
                     {item.degree}
                   </h3>
-                  <div className="text-sm font-medium text-brand-400 mt-0.5">
+                  <div className="text-xs sm:text-sm font-medium text-brand-400 mt-0.5">
                     {item.institution}
                   </div>
                   <div className="text-xs text-zinc-400 mt-0.5">
@@ -52,7 +52,7 @@ export const Education: React.FC = () => {
                 </div>
               </div>
 
-              <div className="flex flex-wrap items-center gap-2">
+              <div className="flex flex-wrap items-center gap-2 mt-1 sm:mt-0">
                 {item.cgpa && (
                   <motion.div
                     initial={{ opacity: 0, x: -8 }}
@@ -78,7 +78,7 @@ export const Education: React.FC = () => {
             </div>
 
             {item.details && item.details.length > 0 && (
-              <ul className="space-y-1.5 pl-14 text-xs sm:text-sm text-zinc-400">
+              <ul className="space-y-1.5 pl-3 sm:pl-14 text-xs sm:text-sm text-zinc-400 mt-3">
                 {item.details.map((detail, dIdx) => (
                   <li key={dIdx} className="list-disc list-outside ml-2">
                     {detail}

@@ -55,7 +55,7 @@ export const Hero: React.FC = () => {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.15] max-w-2xl"
+            className="text-2xl min-[360px]:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.18] sm:leading-[1.15] max-w-2xl"
           >
             Building digital experiences that{" "}
             <span className="bg-gradient-to-r from-brand-400 via-emerald-300 to-teal-200 bg-clip-text text-transparent">
@@ -68,7 +68,7 @@ export const Hero: React.FC = () => {
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.48, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-5 text-sm sm:text-base md:text-lg text-zinc-400 max-w-xl leading-relaxed"
+            className="mt-4 sm:mt-5 text-sm sm:text-base md:text-lg text-zinc-400 max-w-xl leading-relaxed"
           >
             {personal.tagline} Experienced in building cross-platform apps and full-stack software with{" "}
             <span className="text-zinc-200 font-medium">Flutter</span>,{" "}
@@ -83,13 +83,13 @@ export const Hero: React.FC = () => {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-8 flex flex-wrap items-center justify-center lg:justify-start gap-3.5"
+            className="mt-7 sm:mt-8 flex flex-col sm:flex-row items-stretch sm:items-center justify-center lg:justify-start gap-3 w-full sm:w-auto max-w-xs sm:max-w-none"
           >
             <Button
               size="lg"
               variant="primary"
               onClick={() => handleScrollTo("projects")}
-              className="group"
+              className="group w-full sm:w-auto min-h-[44px]"
             >
               <Sparkles className="w-4 h-4 text-zinc-950 transition-transform group-hover:rotate-12" />
               <span>View My Work</span>
@@ -101,7 +101,7 @@ export const Hero: React.FC = () => {
               rel="noopener noreferrer"
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 text-sm md:text-base font-medium text-zinc-200 bg-zinc-900/90 hover:bg-zinc-800/90 border border-zinc-700/80 hover:border-zinc-500 rounded-xl transition-colors shadow-sm group cursor-pointer"
+              className="w-full sm:w-auto min-h-[44px] inline-flex items-center justify-center gap-2 px-6 py-3 text-sm md:text-base font-medium text-zinc-200 bg-zinc-900/90 hover:bg-zinc-800/90 border border-zinc-700/80 hover:border-zinc-500 rounded-xl transition-colors shadow-sm group cursor-pointer"
             >
               <FileText className="w-4 h-4 text-brand-400 transition-transform group-hover:-translate-y-0.5" />
               <span>View Resume</span>
@@ -114,7 +114,7 @@ export const Hero: React.FC = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.72 }}
-            className="mt-8 flex items-center gap-4 text-zinc-400"
+            className="mt-7 sm:mt-8 flex items-center justify-center lg:justify-start gap-3 sm:gap-4 text-zinc-400"
           >
             <span className="text-xs uppercase tracking-wider text-zinc-500 font-medium">Connect:</span>
             
@@ -124,7 +124,7 @@ export const Hero: React.FC = () => {
               rel="noopener noreferrer"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.92 }}
-              className="p-2.5 rounded-full bg-white/[0.03] hover:bg-white/[0.08] border border-white/[0.08] hover:border-brand-500/40 text-zinc-400 hover:text-white transition-colors"
+              className="w-11 h-11 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full bg-white/[0.03] hover:bg-white/[0.08] border border-white/[0.08] hover:border-brand-500/40 text-zinc-400 hover:text-white transition-colors"
               aria-label="GitHub Profile"
             >
               <Github className="w-4 h-4" />
@@ -136,7 +136,7 @@ export const Hero: React.FC = () => {
               rel="noopener noreferrer"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.92 }}
-              className="p-2.5 rounded-full bg-white/[0.03] hover:bg-white/[0.08] border border-white/[0.08] hover:border-brand-500/40 text-zinc-400 hover:text-blue-400 transition-colors"
+              className="w-11 h-11 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full bg-white/[0.03] hover:bg-white/[0.08] border border-white/[0.08] hover:border-brand-500/40 text-zinc-400 hover:text-blue-400 transition-colors"
               aria-label="LinkedIn Profile"
             >
               <Linkedin className="w-4 h-4" />
@@ -146,7 +146,7 @@ export const Hero: React.FC = () => {
               href={personal.socials.email}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.92 }}
-              className="p-2.5 rounded-full bg-white/[0.03] hover:bg-white/[0.08] border border-white/[0.08] hover:border-brand-500/40 text-zinc-400 hover:text-brand-400 transition-colors"
+              className="w-11 h-11 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full bg-white/[0.03] hover:bg-white/[0.08] border border-white/[0.08] hover:border-brand-500/40 text-zinc-400 hover:text-brand-400 transition-colors"
               aria-label="Send Email"
             >
               <Mail className="w-4 h-4" />

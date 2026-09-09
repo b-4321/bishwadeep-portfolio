@@ -32,7 +32,7 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Links & Social Icons */}
-        <div className="flex items-center gap-3 text-zinc-400">
+        <div className="flex flex-wrap items-center justify-center md:justify-end gap-2.5 sm:gap-3 text-zinc-400">
           <motion.a
             href="https://soultechies.com"
             target="_blank"
@@ -52,7 +52,7 @@ export const Footer: React.FC = () => {
             rel="noopener noreferrer"
             whileHover={{ scale: 1.15, y: -2 }}
             whileTap={{ scale: 0.9 }}
-            className="p-2 rounded-full bg-white/[0.03] hover:bg-white/[0.08] hover:text-white transition-colors cursor-pointer"
+            className="w-10 h-10 min-w-[40px] min-h-[40px] flex items-center justify-center rounded-full bg-white/[0.03] hover:bg-white/[0.08] hover:text-white transition-colors cursor-pointer"
             aria-label="GitHub"
           >
             <Github className="w-4 h-4" />
@@ -63,7 +63,7 @@ export const Footer: React.FC = () => {
             rel="noopener noreferrer"
             whileHover={{ scale: 1.15, y: -2 }}
             whileTap={{ scale: 0.9 }}
-            className="p-2 rounded-full bg-white/[0.03] hover:bg-white/[0.08] hover:text-blue-400 transition-colors cursor-pointer"
+            className="w-10 h-10 min-w-[40px] min-h-[40px] flex items-center justify-center rounded-full bg-white/[0.03] hover:bg-white/[0.08] hover:text-blue-400 transition-colors cursor-pointer"
             aria-label="LinkedIn"
           >
             <Linkedin className="w-4 h-4" />
@@ -72,7 +72,7 @@ export const Footer: React.FC = () => {
             href={personal.socials.email}
             whileHover={{ scale: 1.15, y: -2 }}
             whileTap={{ scale: 0.9 }}
-            className="p-2 rounded-full bg-white/[0.03] hover:bg-white/[0.08] hover:text-brand-400 transition-colors cursor-pointer"
+            className="w-10 h-10 min-w-[40px] min-h-[40px] flex items-center justify-center rounded-full bg-white/[0.03] hover:bg-white/[0.08] hover:text-brand-400 transition-colors cursor-pointer"
             aria-label="Email"
           >
             <Mail className="w-4 h-4" />
@@ -83,7 +83,7 @@ export const Footer: React.FC = () => {
             onClick={scrollToTop}
             whileHover={{ scale: 1.15, y: -3 }}
             whileTap={{ scale: 0.9 }}
-            className="p-2 rounded-full bg-white/[0.03] hover:bg-brand-500/10 border border-transparent hover:border-brand-500/20 text-zinc-400 hover:text-brand-400 transition-colors ml-2 cursor-pointer shadow-sm"
+            className="w-10 h-10 min-w-[40px] min-h-[40px] flex items-center justify-center rounded-full bg-white/[0.03] hover:bg-brand-500/10 border border-transparent hover:border-brand-500/20 text-zinc-400 hover:text-brand-400 transition-colors cursor-pointer shadow-sm"
             aria-label="Back to top"
             title="Back to top"
           >

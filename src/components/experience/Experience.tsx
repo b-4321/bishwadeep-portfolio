@@ -19,7 +19,7 @@ export const Experience: React.FC = () => {
         subtitle="Chronological track record of digital engineering, open source contributions, and leadership."
       />
 
-      <div className="relative border-l border-zinc-800 ml-4 sm:ml-8 md:ml-32 space-y-12 pb-4">
+      <div className="relative border-l border-zinc-800 ml-3.5 sm:ml-8 md:ml-32 space-y-10 sm:space-y-12 pb-4">
         {experience.map((item, index) => (
           <motion.div
             key={`${item.company}-${index}`}
@@ -27,10 +27,10 @@ export const Experience: React.FC = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.15 }}
-            className="relative pl-6 sm:pl-10 group"
+            className="relative pl-5 sm:pl-10 group"
           >
             {/* Animated Timeline Node with subtle ping for current position */}
-            <div className="absolute -left-[17px] top-1.5 flex items-center justify-center">
+            <div className="absolute -left-[16px] top-1.5 flex items-center justify-center">
               <span className="relative w-8 h-8 rounded-full bg-zinc-950 border border-zinc-700 flex items-center justify-center group-hover:border-brand-500 transition-colors shadow-sm">
                 {item.current && (
                   <span className="animate-ping absolute inset-0 rounded-full bg-brand-400 opacity-30" />
@@ -50,7 +50,7 @@ export const Experience: React.FC = () => {
             <motion.div
               whileHover={{ y: -4 }}
               transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-              className="p-6 sm:p-7 rounded-2xl bg-zinc-900/60 border border-white/[0.08] hover:border-brand-500/30 hover:bg-zinc-900/80 transition-all duration-300 shadow-sm hover:shadow-xl"
+              className="p-5 sm:p-7 rounded-2xl bg-zinc-900/60 border border-white/[0.08] hover:border-brand-500/30 hover:bg-zinc-900/80 transition-all duration-300 shadow-sm hover:shadow-xl"
             >
               <div className="flex flex-wrap items-start justify-between gap-3 mb-3">
                 <div>

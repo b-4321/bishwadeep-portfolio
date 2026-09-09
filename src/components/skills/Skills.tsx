@@ -113,7 +113,7 @@ export const Skills: React.FC = () => {
               </span>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-3.5 sm:gap-4">
+            <div className="grid grid-cols-1 min-[380px]:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3.5 sm:gap-4">
               {coreStack.map((tech, idx) => (
                 <TechCard key={tech.id} tech={tech} index={idx} />
               ))}
@@ -143,7 +143,7 @@ export const Skills: React.FC = () => {
               </span>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-3.5 sm:gap-4">
+            <div className="grid grid-cols-1 min-[380px]:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3.5 sm:gap-4">
               {languages.map((tech, idx) => (
                 <TechCard key={tech.id} tech={tech} index={idx} />
               ))}
@@ -173,7 +173,7 @@ export const Skills: React.FC = () => {
               </span>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-3.5 sm:gap-4">
+            <div className="grid grid-cols-1 min-[380px]:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3.5 sm:gap-4">
               {frameworksAndTools.map((tech, idx) => (
                 <TechCard key={tech.id} tech={tech} index={idx} />
               ))}
@@ -184,7 +184,7 @@ export const Skills: React.FC = () => {
         /* Filtered Grid View */
         <motion.div
           layout
-          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-3.5 sm:gap-4"
+          className="grid grid-cols-1 min-[380px]:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3.5 sm:gap-4"
         >
           <AnimatePresence mode="popLayout">
             {filteredItems.map((tech, idx) => (

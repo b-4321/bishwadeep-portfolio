@@ -11,11 +11,11 @@ export const ProfilePhoto: React.FC = () => {
 
   // Floating technical badges placed outside the circular photo perimeter
   const floatingTags = [
-    { name: "Flutter", pos: "-top-5 left-10 sm:-top-6 sm:left-14", delay: 0 },
-    { name: "React", pos: "top-1/4 -left-6 sm:top-1/3 sm:-left-12", delay: 1.2 },
-    { name: "Firebase", pos: "bottom-14 -left-5 sm:bottom-16 sm:-left-10", delay: 2 },
-    { name: "Python", pos: "top-1/4 -right-6 sm:top-1/3 sm:-right-12", delay: 1.6 },
-    { name: "Java", pos: "bottom-10 -right-5 sm:bottom-12 sm:-right-10", delay: 0.8 },
+    { name: "Flutter", pos: "-top-3 left-4 sm:-top-6 sm:left-14", delay: 0, mobile: true },
+    { name: "Firebase", pos: "bottom-7 -left-1 sm:bottom-16 sm:-left-10", delay: 2, mobile: true },
+    { name: "React", pos: "top-6 -right-1 sm:top-1/3 sm:-right-12", delay: 1.2, mobile: true },
+    { name: "Python", pos: "top-1/4 -right-6 sm:top-1/3 sm:-right-12", delay: 1.6, mobile: false },
+    { name: "Java", pos: "bottom-10 -right-5 sm:bottom-12 sm:-right-10", delay: 0.8, mobile: false },
   ];
 
   return (
@@ -34,14 +34,14 @@ export const ProfilePhoto: React.FC = () => {
       <motion.div
         whileHover={{ scale: 1.02 }}
         transition={{ type: "spring", stiffness: 300, damping: 20 }}
-        className="profile-image relative z-10 h-[240px] w-[240px] min-[380px]:h-[275px] min-[380px]:w-[275px] sm:h-[320px] sm:w-[320px] max-w-[85vw] max-h-[85vw] overflow-hidden rounded-full border border-white/[0.12] shadow-2xl bg-zinc-950 flex items-center justify-center group"
+        className="profile-image relative z-10 h-[225px] w-[225px] min-[380px]:h-[265px] min-[380px]:w-[265px] sm:h-[320px] sm:w-[320px] max-w-[80vw] max-h-[80vw] overflow-hidden rounded-full border border-white/[0.12] shadow-2xl bg-zinc-950 flex items-center justify-center group"
       >
         <Image
           src="/images/profile.jpg"
           alt={personal.name}
           fill
           priority
-          sizes="(max-width: 640px) 275px, 320px"
+          sizes="(max-width: 640px) 265px, 320px"
           className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
         />
       </motion.div>
@@ -52,13 +52,13 @@ export const ProfilePhoto: React.FC = () => {
         animate={{ opacity: 1, scale: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.65, ease: [0.22, 1, 0.36, 1] }}
         whileHover={{ scale: 1.06 }}
-        className="availability-badge absolute -bottom-3 right-0 sm:-bottom-6 sm:right-6 z-20 flex items-center gap-2 px-3 sm:px-3.5 py-1.5 rounded-full bg-zinc-950/95 border border-brand-500/40 backdrop-blur-xl shadow-glass text-xs font-mono text-zinc-100 hover:border-brand-400 transition-all cursor-default"
+        className="availability-badge absolute -bottom-3 right-1 sm:-bottom-6 sm:right-6 z-20 flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full bg-zinc-950/95 border border-brand-500/40 backdrop-blur-xl shadow-glass text-[11px] sm:text-xs font-mono text-zinc-100 hover:border-brand-400 transition-all cursor-default"
       >
         <span className="relative flex h-2 w-2">
           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
           <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
         </span>
-        <span className="font-semibold text-xs text-zinc-100 tracking-wide">Available</span>
+        <span className="font-semibold text-[11px] sm:text-xs text-zinc-100 tracking-wide">Available</span>
       </motion.div>
 
       {/* 3. Floating Technology Tags (z-20) - Floating around outer perimeter */}
@@ -69,7 +69,7 @@ export const ProfilePhoto: React.FC = () => {
           animate={{
             opacity: 1,
             scale: 1,
-            y: [0, -7, 0, 7, 0],
+            y: [0, -6, 0, 6, 0],
           }}
           whileHover={{ scale: 1.08 }}
           transition={{
@@ -82,9 +82,11 @@ export const ProfilePhoto: React.FC = () => {
             opacity: { duration: 0.5, delay: 0.8 + idx * 0.08, ease: [0.22, 1, 0.36, 1] },
             scale: { duration: 0.5, delay: 0.8 + idx * 0.08, ease: [0.22, 1, 0.36, 1] },
           }}
-          className={`absolute ${tag.pos} z-20 hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-zinc-950/90 border border-white/[0.1] hover:border-brand-500/50 hover:bg-zinc-950 backdrop-blur-xl shadow-glass text-xs font-mono text-zinc-200 hover:text-white transition-colors cursor-default`}
+          className={`absolute ${tag.pos} z-20 ${
+            tag.mobile ? "flex" : "hidden sm:flex"
+          } items-center gap-1 sm:gap-1.5 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full bg-zinc-950/90 border border-white/[0.1] hover:border-brand-500/50 hover:bg-zinc-950 backdrop-blur-xl shadow-glass text-[10px] sm:text-xs font-mono text-zinc-200 hover:text-white transition-colors cursor-default`}
         >
-          <Sparkles className="w-3 h-3 text-brand-400" />
+          <Sparkles className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-brand-400" />
           <span>{tag.name}</span>
         </motion.div>
       ))}
