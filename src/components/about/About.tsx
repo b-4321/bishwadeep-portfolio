@@ -18,28 +18,40 @@ export const About: React.FC = () => {
       value: "3+ Years",
       subtext: "Freelance & Soultechies since 2021",
       icon: Briefcase,
-      color: "text-emerald-400"
+      color: "text-emerald-400",
+      bgGlow: "bg-emerald-500"
     },
     {
       label: "Undergraduate Distinction",
       value: "9.00 CGPA",
       subtext: "B.Sc. Computer Science (Hons)",
       icon: GraduationCap,
-      color: "text-blue-400"
+      color: "text-blue-400",
+      bgGlow: "bg-blue-500"
+    },
+    {
+      label: "MCA Academic Performance",
+      value: "8.15 CGPA",
+      subtext: "MCA",
+      icon: GraduationCap,
+      color: "text-cyan-400",
+      bgGlow: "bg-cyan-500"
     },
     {
       label: "Competitive State Rank",
       value: "Rank 251",
       subtext: "WB JECA MCA Examination",
       icon: Award,
-      color: "text-amber-400"
+      color: "text-amber-400",
+      bgGlow: "bg-amber-500"
     },
     {
       label: "Accredited Certifications",
       value: `${certifications.length}+ Credentials`,
       subtext: "Coding Ninjas, AWS, Google, EC-Council",
       icon: Code,
-      color: "text-purple-400"
+      color: "text-purple-400",
+      bgGlow: "bg-purple-500"
     }
   ];
 
@@ -149,7 +161,7 @@ export const About: React.FC = () => {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.15 }}
-        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"
+        className="flex flex-wrap justify-center gap-4"
       >
         {verifiedStats.map((stat, idx) => {
           const Icon = stat.icon;
@@ -157,17 +169,25 @@ export const About: React.FC = () => {
             <motion.div
               key={idx}
               variants={fadeIn}
-              whileHover={{ y: -4 }}
+              whileHover={{ y: -4, scale: 1.01 }}
               transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+              className="w-full sm:w-[calc(50%-0.5rem)] lg:w-[calc(33.333%-0.75rem)] flex"
             >
-              <Card className="p-5 flex flex-col justify-between h-full bg-zinc-900/50 hover:bg-zinc-900/80 transition-all shadow-sm hover:shadow-xl">
-                <div className="flex items-center justify-between mb-3">
-                  <span className="text-xs font-medium text-zinc-400">{stat.label}</span>
-                  <div className={`p-2 rounded-xl bg-white/[0.04] ${stat.color}`}>
+              <Card className="p-5 flex flex-col justify-between w-full h-full bg-zinc-900/50 hover:bg-zinc-900/80 border border-white/[0.08] hover:border-white/[0.16] transition-all shadow-sm hover:shadow-xl group relative overflow-hidden">
+                {/* Soft accent glow on hover */}
+                <div
+                  className={`absolute -top-10 -right-10 w-24 h-24 rounded-full blur-2xl opacity-0 group-hover:opacity-15 transition-opacity duration-500 pointer-events-none ${stat.bgGlow}`}
+                />
+
+                <div className="flex items-center justify-between mb-3 relative z-10">
+                  <span className="text-xs font-medium text-zinc-400 group-hover:text-zinc-200 transition-colors">
+                    {stat.label}
+                  </span>
+                  <div className={`p-2 rounded-xl bg-white/[0.04] ${stat.color} group-hover:scale-110 transition-transform duration-300`}>
                     <Icon className="w-4 h-4" />
                   </div>
                 </div>
-                <div>
+                <div className="relative z-10">
                   <div className="text-2xl font-bold text-white tracking-tight">{stat.value}</div>
                   <div className="text-xs text-zinc-500 mt-1">{stat.subtext}</div>
                 </div>
