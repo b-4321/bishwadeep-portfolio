@@ -91,6 +91,90 @@ body {
   border-color: rgba(255, 255, 255, 0.16);
 }
 
+/* Floating Tech Pills Animations */
+@keyframes float-flutter {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes float-python {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
+@keyframes float-firebase {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(5px);
+  }
+}
+
+@keyframes float-java {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.pill-float-flutter {
+  animation: float-flutter 5.5s ease-in-out infinite;
+  animation-delay: 0s;
+}
+
+.pill-float-python {
+  animation: float-python 6.5s ease-in-out infinite;
+  animation-delay: -1.2s;
+}
+
+.pill-float-firebase {
+  animation: float-firebase 5s ease-in-out infinite;
+  animation-delay: -2.4s;
+}
+
+.pill-float-java {
+  animation: float-java 6s ease-in-out infinite;
+  animation-delay: -0.7s;
+}
+
+.pill-float-wrapper {
+  will-change: transform;
+}
+
+.floating-tech-pill {
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+              filter 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+              border-color 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+              color 0.25s ease;
+  will-change: transform, filter, box-shadow;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .pill-float-wrapper:hover {
+    animation-play-state: paused !important;
+  }
+
+  .floating-tech-pill:hover {
+    transform: translateY(-2px) scale(1.06);
+    filter: brightness(1.12);
+    border-color: rgba(16, 185, 129, 0.45);
+    box-shadow: 0 0 16px rgba(16, 185, 129, 0.25);
+    color: #ffffff;
+  }
+}
+
 /* Accessibility: Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
   *,
