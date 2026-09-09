@@ -455,6 +455,7 @@ export const portfolioData: PortfolioData = {
       field: "Computer Science & Applications",
       duration: "Oct 2023 – Jul 2025",
       grade: "JECA Rank 251",
+      cgpa: "8.15 CGPA",
       details: [
         "Post-graduate focus on advanced computer architecture, software engineering, and web systems.",
         "Secured competitive West Bengal JECA State Rank 251."

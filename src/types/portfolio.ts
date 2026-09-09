@@ -86,6 +86,7 @@ export interface EducationItem {
   field: string;
   duration: string;
   grade?: string;
+  cgpa?: string;
   details?: string[];
 }
 

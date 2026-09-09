@@ -52,7 +52,18 @@ export const Education: React.FC = () => {
                 </div>
               </div>
 
-              <div className="flex items-center gap-2">
+              <div className="flex flex-wrap items-center gap-2">
+                {item.cgpa && (
+                  <motion.div
+                    initial={{ opacity: 0, x: -8 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                    className="inline-flex items-center gap-1 text-xs font-semibold px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-300 border border-emerald-500/25 shadow-sm font-mono"
+                  >
+                    <GraduationCap className="w-3.5 h-3.5 text-emerald-400" />
+                    <span>{item.cgpa}</span>
+                  </motion.div>
+                )}
                 {item.grade && (
                   <Badge variant="brand" size="sm">
                     <Award className="w-3.5 h-3.5 mr-1" />
