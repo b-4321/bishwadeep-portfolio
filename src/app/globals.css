@@ -91,65 +91,70 @@ body {
   border-color: rgba(255, 255, 255, 0.16);
 }
 
-/* Floating Tech Pills Animations */
-@keyframes float-flutter {
+/* Technology Orbital Animation System */
+@keyframes orbit-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes orbit-counter-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes orbit-reverse-slow {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes pill-micro-float {
   0%, 100% {
-    transform: translateY(0px);
+    transform: translateY(0px) scale(1);
   }
   50% {
-    transform: translateY(-6px);
+    transform: translateY(-3.5px) scale(1.02);
   }
 }
 
-@keyframes float-python {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-7px);
-  }
-}
-
-@keyframes float-firebase {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(5px);
-  }
-}
-
-@keyframes float-java {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-6px);
-  }
-}
-
-.pill-float-flutter {
-  animation: float-flutter 5.5s ease-in-out infinite;
-  animation-delay: 0s;
-}
-
-.pill-float-python {
-  animation: float-python 6.5s ease-in-out infinite;
-  animation-delay: -1.2s;
-}
-
-.pill-float-firebase {
-  animation: float-firebase 5s ease-in-out infinite;
-  animation-delay: -2.4s;
-}
-
-.pill-float-java {
-  animation: float-java 6s ease-in-out infinite;
-  animation-delay: -0.7s;
-}
-
-.pill-float-wrapper {
+.orbit-track {
+  animation: orbit-spin 16s linear infinite;
   will-change: transform;
+}
+
+.orbit-counter-rotate {
+  animation: orbit-counter-spin 16s linear infinite;
+  will-change: transform;
+}
+
+.orbit-secondary-ring {
+  animation: orbit-reverse-slow 35s linear infinite;
+  will-change: transform;
+}
+
+.orbit-pill-float {
+  animation: pill-micro-float 4.2s ease-in-out infinite;
+  will-change: transform;
+}
+
+@media (max-width: 640px) {
+  .orbit-track {
+    animation-duration: 20s;
+  }
+  .orbit-counter-rotate {
+    animation-duration: 20s;
+  }
 }
 
 .floating-tech-pill {
@@ -161,18 +166,17 @@ body {
   will-change: transform, filter, box-shadow;
 }
 
-@media (hover: hover) and (pointer: fine) {
-  .pill-float-wrapper:hover {
-    animation-play-state: paused !important;
-  }
+.profile-orbit-wrapper:has(.floating-tech-pill:hover) .orbit-track,
+.profile-orbit-wrapper:has(.floating-tech-pill:hover) .orbit-counter-rotate {
+  animation-play-state: paused !important;
+}
 
-  .floating-tech-pill:hover {
-    transform: translateY(-2px) scale(1.06);
-    filter: brightness(1.12);
-    border-color: rgba(16, 185, 129, 0.45);
-    box-shadow: 0 0 16px rgba(16, 185, 129, 0.25);
-    color: #ffffff;
-  }
+.floating-tech-pill:hover {
+  transform: scale(1.08) translateY(-1px);
+  filter: brightness(1.15);
+  border-color: rgba(16, 185, 129, 0.5);
+  box-shadow: 0 0 16px rgba(16, 185, 129, 0.35);
+  color: #ffffff;
 }
 
 /* Accessibility: Reduced Motion */
