@@ -34,14 +34,14 @@ export const ProfilePhoto: React.FC = () => {
       <motion.div
         whileHover={{ scale: 1.02 }}
         transition={{ type: "spring", stiffness: 300, damping: 20 }}
-        className="profile-image relative z-10 h-[280px] w-[280px] sm:h-[320px] sm:w-[320px] overflow-hidden rounded-full border border-white/[0.12] shadow-2xl bg-zinc-950 flex items-center justify-center group"
+        className="profile-image relative z-10 h-[240px] w-[240px] min-[380px]:h-[275px] min-[380px]:w-[275px] sm:h-[320px] sm:w-[320px] max-w-[85vw] max-h-[85vw] overflow-hidden rounded-full border border-white/[0.12] shadow-2xl bg-zinc-950 flex items-center justify-center group"
       >
         <Image
           src="/images/profile.jpg"
           alt={personal.name}
           fill
           priority
-          sizes="(max-width: 768px) 280px, 320px"
+          sizes="(max-width: 640px) 275px, 320px"
           className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
         />
       </motion.div>
@@ -52,7 +52,7 @@ export const ProfilePhoto: React.FC = () => {
         animate={{ opacity: 1, scale: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.65, ease: [0.22, 1, 0.36, 1] }}
         whileHover={{ scale: 1.06 }}
-        className="availability-badge absolute -bottom-5 right-2 sm:-bottom-6 sm:right-6 z-20 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-zinc-950/95 border border-brand-500/40 backdrop-blur-xl shadow-glass text-xs font-mono text-zinc-100 hover:border-brand-400 transition-all cursor-default"
+        className="availability-badge absolute -bottom-3 right-0 sm:-bottom-6 sm:right-6 z-20 flex items-center gap-2 px-3 sm:px-3.5 py-1.5 rounded-full bg-zinc-950/95 border border-brand-500/40 backdrop-blur-xl shadow-glass text-xs font-mono text-zinc-100 hover:border-brand-400 transition-all cursor-default"
       >
         <span className="relative flex h-2 w-2">
           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />

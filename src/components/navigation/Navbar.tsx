@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, FileText, Send } from "lucide-react";
+import { FileText, Send } from "lucide-react";
 import { portfolioData } from "@/data/portfolio";
 import { cn } from "@/lib/utils";
 
@@ -18,16 +18,50 @@ const NAV_ITEMS = [
   { label: "Contact", href: "#contact" }
 ];
 
+const menuVariants = {
+  closed: {
+    opacity: 0,
+    y: -10,
+    transition: {
+      duration: 0.2,
+      ease: [0.22, 1, 0.36, 1]
+    }
+  },
+  open: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.25,
+      ease: [0.22, 1, 0.36, 1],
+      staggerChildren: 0.035,
+      delayChildren: 0.05
+    }
+  }
+};
+
+const itemVariants = {
+  closed: {
+    opacity: 0,
+    x: -10,
+    transition: { duration: 0.15 }
+  },
+  open: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.22, ease: [0.22, 1, 0.36, 1] }
+  }
+};
+
 export const Navbar: React.FC = () => {
   const [activeSection, setActiveSection] = useState<string>("home");
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
 
+  // Monitor scroll for glass styling and active section spy
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 40);
+      setIsScrolled(window.scrollY > 30);
 
-      // Section spy
       const sections = NAV_ITEMS.map((item) => item.href.substring(1));
       const scrollPosition = window.scrollY + 200;
 
@@ -48,12 +82,40 @@ export const Navbar: React.FC = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Close mobile menu on Escape key press
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape" || e.key === "Esc") {
+        setMobileMenuOpen(false);
+      }
+    };
+
+    if (mobileMenuOpen) {
+      window.addEventListener("keydown", handleKeyDown);
+    }
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [mobileMenuOpen]);
+
+  // Smooth scroll handler with offset for fixed navbar
   const handleLinkClick = (href: string) => {
     setMobileMenuOpen(false);
-    const targetId = href.substring(1);
+    const targetId = href.startsWith("#") ? href.substring(1) : href;
+
+    if (targetId === "home") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
+
     const element = document.getElementById(targetId);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+      const navbarOffset = 75;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - navbarOffset;
+
+      window.scrollTo({
+        top: Math.max(0, offsetPosition),
+        behavior: "smooth"
+      });
     }
   };
 
@@ -61,23 +123,23 @@ export const Navbar: React.FC = () => {
     <>
       <header
         className={cn(
-          "fixed top-0 left-0 right-0 z-50 flex justify-center px-4 transition-all duration-300 pointer-events-none",
-          isScrolled ? "py-2.5 sm:py-3" : "py-4 sm:py-5"
+          "fixed top-0 left-0 right-0 z-50 flex justify-center w-full px-3 sm:px-5 lg:px-8 transition-all duration-300 pointer-events-none",
+          isScrolled ? "py-2 sm:py-2.5" : "py-3 sm:py-4"
         )}
       >
         <motion.nav
-          initial={{ y: -24, opacity: 0 }}
+          initial={{ y: -15, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
           className={cn(
-            "pointer-events-auto flex items-center justify-between w-full max-w-6xl px-4 py-2.5 rounded-full transition-all duration-300",
+            "pointer-events-auto flex items-center justify-between w-full max-w-6xl px-4 sm:px-6 py-2 sm:py-2.5 rounded-2xl xl:rounded-full transition-all duration-300 relative box-border",
             isScrolled
-              ? "bg-zinc-950/85 border border-white/[0.12] backdrop-blur-2xl shadow-glass"
-              : "bg-zinc-950/60 border border-white/[0.07] backdrop-blur-xl shadow-sm"
+              ? "bg-zinc-950/90 border border-white/[0.12] backdrop-blur-2xl shadow-glass"
+              : "bg-zinc-950/70 border border-white/[0.08] backdrop-blur-xl shadow-sm"
           )}
           aria-label="Main Navigation"
         >
-          {/* Logo / Personal Brand */}
+          {/* LEFT: Initials / Logo & Name */}
           <motion.a
             href="#home"
             whileHover={{ scale: 1.02 }}
@@ -86,17 +148,17 @@ export const Navbar: React.FC = () => {
               e.preventDefault();
               handleLinkClick("#home");
             }}
-            className="flex items-center gap-2 group cursor-pointer pl-2 select-none"
+            className="flex items-center gap-2.5 group cursor-pointer select-none min-w-0"
           >
-            <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-brand-500 to-emerald-300 flex items-center justify-center font-bold text-zinc-950 text-xs shadow-brand-glow">
+            <div className="w-8 h-8 min-w-[32px] rounded-full bg-gradient-to-tr from-brand-500 to-emerald-300 flex items-center justify-center font-bold text-zinc-950 text-xs shadow-brand-glow flex-shrink-0">
               BK
             </div>
-            <span className="text-sm font-semibold tracking-tight text-zinc-200 group-hover:text-white transition-colors">
+            <span className="text-xs sm:text-sm font-semibold tracking-tight text-zinc-200 group-hover:text-white transition-colors truncate">
               {portfolioData.personal.name}
             </span>
           </motion.a>
 
-          {/* Desktop Navigation Links */}
+          {/* CENTER: Desktop Navigation Links (xl+) */}
           <div className="hidden xl:flex items-center gap-1">
             {NAV_ITEMS.map((item) => {
               const isActive = activeSection === item.href.substring(1);
@@ -109,7 +171,7 @@ export const Navbar: React.FC = () => {
                     handleLinkClick(item.href);
                   }}
                   className={cn(
-                    "relative px-3 py-1.5 text-xs font-medium rounded-full transition-colors select-none",
+                    "relative px-3 py-1.5 text-xs font-medium rounded-full transition-colors select-none cursor-pointer",
                     isActive ? "text-white" : "text-zinc-400 hover:text-zinc-200"
                   )}
                 >
@@ -126,8 +188,8 @@ export const Navbar: React.FC = () => {
             })}
           </div>
 
-          {/* Action CTAs */}
-          <div className="hidden md:flex items-center gap-2">
+          {/* RIGHT: Desktop Action CTAs (xl+) */}
+          <div className="hidden xl:flex items-center gap-2">
             <motion.a
               href={portfolioData.personal.resumeDriveUrl}
               target="_blank"
@@ -154,76 +216,120 @@ export const Navbar: React.FC = () => {
             </motion.a>
           </div>
 
-          {/* Mobile Menu Toggle Button */}
+          {/* RIGHT: Animated Hamburger Button (Mobile & Tablet: < xl) */}
           <motion.button
+            type="button"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="xl:hidden p-2 text-zinc-400 hover:text-zinc-100 rounded-lg hover:bg-white/[0.06] transition-colors focus:outline-none"
+            onClick={() => setMobileMenuOpen((prev) => !prev)}
+            className="xl:hidden flex items-center justify-center w-11 h-11 min-w-[44px] min-h-[44px] rounded-xl text-zinc-300 hover:text-white bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] transition-colors focus:outline-none focus:ring-2 focus:ring-brand-500/40 select-none cursor-pointer flex-shrink-0"
             aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-navigation-menu"
           >
-            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            <div className="w-5 h-4 relative flex flex-col justify-between items-center pointer-events-none">
+              <motion.span
+                animate={mobileMenuOpen ? { rotate: 45, y: 7 } : { rotate: 0, y: 0 }}
+                transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+                className="w-5 h-0.5 bg-current rounded-full origin-center"
+              />
+              <motion.span
+                animate={mobileMenuOpen ? { opacity: 0, scaleX: 0 } : { opacity: 1, scaleX: 1 }}
+                transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
+                className="w-5 h-0.5 bg-current rounded-full"
+              />
+              <motion.span
+                animate={mobileMenuOpen ? { rotate: -45, y: -7 } : { rotate: 0, y: 0 }}
+                transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+                className="w-5 h-0.5 bg-current rounded-full origin-center"
+              />
+            </div>
           </motion.button>
         </motion.nav>
       </header>
 
-      {/* Mobile Drawer Menu */}
+      {/* Mobile / Tablet Dropdown Menu & Backdrop */}
       <AnimatePresence>
         {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-x-4 top-20 z-40 p-5 rounded-2xl bg-zinc-950/95 border border-white/[0.1] backdrop-blur-2xl shadow-2xl xl:hidden max-h-[85vh] overflow-y-auto"
-          >
-            <div className="flex flex-col gap-1.5">
-              {NAV_ITEMS.map((item) => {
-                const isActive = activeSection === item.href.substring(1);
-                return (
+          <>
+            {/* Click outside backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              onClick={() => setMobileMenuOpen(false)}
+              className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm xl:hidden"
+              aria-hidden="true"
+            />
+
+            {/* Dropdown Menu Container */}
+            <motion.div
+              id="mobile-navigation-menu"
+              variants={menuVariants}
+              initial="closed"
+              animate="open"
+              exit="closed"
+              className="fixed inset-x-3 sm:inset-x-5 top-[68px] sm:top-[74px] z-50 p-4 sm:p-5 rounded-2xl bg-zinc-950/95 border border-white/[0.1] backdrop-blur-2xl shadow-2xl xl:hidden max-h-[calc(100vh-85px)] overflow-y-auto"
+              role="navigation"
+              aria-label="Mobile Navigation Menu"
+            >
+              <div className="flex flex-col gap-1">
+                {NAV_ITEMS.map((item) => {
+                  const isActive = activeSection === item.href.substring(1);
+                  return (
+                    <motion.a
+                      key={item.href}
+                      variants={itemVariants}
+                      href={item.href}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleLinkClick(item.href);
+                      }}
+                      className={cn(
+                        "flex items-center justify-between px-4 py-2.5 text-sm font-medium rounded-xl transition-all cursor-pointer select-none",
+                        isActive
+                          ? "bg-brand-500/10 text-brand-400 border border-brand-500/25 shadow-sm font-semibold"
+                          : "text-zinc-300 hover:text-white hover:bg-white/[0.05]"
+                      )}
+                    >
+                      <span>{item.label}</span>
+                      {isActive && (
+                        <span className="w-1.5 h-1.5 rounded-full bg-brand-400 shadow-brand-glow" />
+                      )}
+                    </motion.a>
+                  );
+                })}
+
+                {/* Quick actions for Resume and Contact */}
+                <motion.div
+                  variants={itemVariants}
+                  className="pt-3 mt-2 border-t border-white/[0.08] grid grid-cols-2 gap-2"
+                >
                   <a
-                    key={item.href}
-                    href={item.href}
+                    href={portfolioData.personal.resumeDriveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-1.5 py-2.5 px-3 text-xs font-medium text-zinc-300 hover:text-white bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] rounded-xl transition-colors"
+                  >
+                    <FileText className="w-3.5 h-3.5 text-brand-400" />
+                    <span>Resume</span>
+                  </a>
+                  <a
+                    href="#contact"
                     onClick={(e) => {
                       e.preventDefault();
-                      handleLinkClick(item.href);
+                      handleLinkClick("#contact");
                     }}
-                    className={cn(
-                      "px-4 py-2.5 text-sm font-medium rounded-xl transition-colors",
-                      isActive
-                        ? "bg-brand-500/10 text-brand-400 border border-brand-500/20"
-                        : "text-zinc-300 hover:bg-white/[0.05]"
-                    )}
+                    className="flex items-center justify-center gap-1.5 py-2.5 px-3 text-xs font-semibold text-zinc-950 bg-brand-500 hover:bg-brand-400 rounded-xl transition-colors shadow-brand-glow cursor-pointer"
                   >
-                    {item.label}
+                    <Send className="w-3 h-3" />
+                    <span>Connect</span>
                   </a>
-                );
-              })}
-              <div className="pt-3 mt-2 border-t border-white/[0.08] flex flex-col gap-2">
-                <a
-                  href={portfolioData.personal.resumeDriveUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 py-2.5 text-xs font-medium text-zinc-300 bg-white/[0.04] border border-white/[0.08] rounded-xl"
-                >
-                  <FileText className="w-4 h-4 text-brand-400" />
-                  <span>View Resume (Online)</span>
-                </a>
-                <a
-                  href="#contact"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleLinkClick("#contact");
-                  }}
-                  className="flex items-center justify-center gap-2 py-2.5 text-xs font-semibold text-zinc-950 bg-brand-500 rounded-xl"
-                >
-                  <Send className="w-3.5 h-3.5" />
-                  <span>Get In Touch</span>
-                </a>
+                </motion.div>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </>

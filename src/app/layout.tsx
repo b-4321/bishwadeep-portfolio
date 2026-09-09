@@ -1,8 +1,14 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { portfolioData } from "@/data/portfolio";
 import { BackgroundEffect } from "@/components/layout/BackgroundEffect";
 import { ScrollProgress } from "@/components/layout/ScrollProgress";
 import "./globals.css";
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+};
 
 const { personal } = portfolioData;
 

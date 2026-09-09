@@ -42,7 +42,7 @@ export const Skills: React.FC = () => {
   const frameworksAndTools = techStack.filter((t) => t.category !== "language");
 
   return (
-    <section id="skills" className="py-20 px-4 max-w-6xl mx-auto relative scroll-mt-24">
+    <section id="skills" className="py-20 px-4 max-w-6xl mx-auto relative scroll-mt-24 overflow-hidden">
       {/* Subtle Floating Ambient Background Particles / Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[380px] bg-brand-500/5 blur-[130px] rounded-full pointer-events-none -z-10" />
       <div className="absolute top-1/4 right-5 w-[350px] h-[280px] bg-emerald-400/5 blur-[100px] rounded-full pointer-events-none -z-10" />
